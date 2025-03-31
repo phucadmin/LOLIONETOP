@@ -1,0 +1,32 @@
+local ScreenGui = Instance.new("ScreenGui")
+local TextButton = Instance.new("TextButton")
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+TextButton.Parent = ScreenGui
+TextButton.Size = UDim2.new(0, 200, 0, 50)
+TextButton.Position = UDim2.new(0.5, -100, 0.5, -25)
+TextButton.Text = "START SCRIPT"
+TextButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Font = Enum.Font.SourceSansBold
+TextButton.TextSize = 20
+
+TextButton.MouseButton1Click:Connect(function()
+    if not game:IsLoaded() then 
+        repeat game.Loaded:Wait() until game:IsLoaded() 
+    end
+    
+    _G.Setting = {
+        ['Evo Race V4'] = {
+            ['Helper'] = "NameA1",
+            ['Helper2'] = "NameA2",
+            ['Farm'] = { "NameA3", "NameA4", "NameA5" }
+        },
+        ['White Screen'] = true,
+        ['FPS Booster'] = true
+    }
+    
+    script_key="KEY";
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2d1ebc6b47e1b9c4e34c97898f9b7c4b.lua"))()
+end)
