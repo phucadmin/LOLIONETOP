@@ -1,59 +1,73 @@
 local ScreenGui = Instance.new("ScreenGui")
-local TextButton = Instance.new("TextButton")
-local FPSLabel = Instance.new("TextLabel")
-local CreatorLabel = Instance.new("TextLabel")
+local MainFrame = Instance.new("Frame")
+local UIScroll = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Tạo nút bấm kích hoạt
-TextButton.Parent = ScreenGui
-TextButton.Size = UDim2.new(0, 200, 0, 50)
-TextButton.Position = UDim2.new(0.5, -100, 0.5, -25)
-TextButton.Text = "START"
-TextButton.BackgroundColor3 = Color3.fromRGB(50, 205, 50)
-TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.Font = Enum.Font.GothamBold
-TextButton.TextSize = 22
-TextButton.BorderSizePixel = 2
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.AutoButtonColor = true
+-- Tạo khung chính chứa danh sách
+MainFrame.Parent = ScreenGui
+MainFrame.Size = UDim2.new(0, 250, 0, 350)
+MainFrame.Position = UDim2.new(0.5, -125, 0.5, -175)
+MainFrame.BackgroundColor3 = Color3.fromRGB(44, 62, 80)
+MainFrame.BorderSizePixel = 0
+MainFrame.ClipsDescendants = true
 
--- Hiển thị FPS
-FPSLabel.Parent = ScreenGui
-FPSLabel.Size = UDim2.new(0, 200, 0, 30)
-FPSLabel.Position = UDim2.new(0, 10, 0, 10)
-FPSLabel.Text = "FPS: Calculating..."
-FPSLabel.BackgroundTransparency = 1
-FPSLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-FPSLabel.Font = Enum.Font.GothamBold
-FPSLabel.TextSize = 18
-FPSLabel.TextStrokeTransparency = 0.5
+-- Tạo danh sách cuộn
+UIScroll.Parent = MainFrame
+UIScroll.Size = UDim2.new(1, 0, 1, 0)
+UIScroll.CanvasSize = UDim2.new(0, 0, 2, 0)
+UIScroll.ScrollBarThickness = 8
 
--- Hiển thị tên người tạo
-CreatorLabel.Parent = ScreenGui
-CreatorLabel.Size = UDim2.new(0, 200, 0, 30)
-CreatorLabel.Position = UDim2.new(0, 10, 0, 40)
-CreatorLabel.Text = "Created by: Phúc"
-CreatorLabel.BackgroundTransparency = 1
-CreatorLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-CreatorLabel.Font = Enum.Font.GothamBold
-CreatorLabel.TextSize = 18
-CreatorLabel.TextStrokeTransparency = 0.5
+UIListLayout.Parent = UIScroll
+UIListLayout.Padding = UDim.new(0, 10)
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
--- Cập nhật FPS theo thời gian thực
-local function updateFPS()
-    while true do
-        local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
-        FPSLabel.Text = "FPS: " .. fps
-    end
+-- Hàm tạo nút cho từng kịch bản
+local function createButton(text, callback)
+    local button = Instance.new("TextButton")
+    button.Parent = UIScroll
+    button.Size = UDim2.new(1, -20, 0, 40)
+    button.Text = text
+    button.BackgroundColor3 = Color3.fromRGB(52, 152, 219)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.GothamBold
+    button.TextSize = 20
+    button.BorderSizePixel = 0
+    button.AutoButtonColor = true
+    button.MouseButton1Click:Connect(callback)
 end
-spawn(updateFPS)
 
--- Chức năng khi bấm nút
-TextButton.MouseButton1Click:Connect(function()
-    getgenv().Key = "MARU-D2N1F-DCUN-WMPWZ-UCUC-8KPKX"
-    getgenv().id = "1207978541585661952"
+-- Tạo các kịch bản có thể kích hoạt
+createButton("Kịch bản 1: Kích hoạt A", function()
+    getgenv().Key = "MARU-XL62E-C7MOC-3XU1-313GR-N4D1B"
+    getgenv().id = "120797DFF1585661952"
     loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
-    
-    TextButton:Destroy() -- Xóa nút sau khi kích hoạt
+    print("Kịch bản 1 đã được kích hoạt")
+end)
+
+createButton("Kịch bản 2: Kích hoạt B", function()
+    -- Thêm kịch bản khác tại đây
+    print("Kịch bản 2 đã được kích hoạt")
+end)
+
+createButton("Kịch bản 3: Kích hoạt C", function()
+    -- Thêm kịch bản khác tại đây
+    print("Kịch bản 3 đã được kích hoạt")
+end)
+
+-- Tạo nút đóng
+local closeButton = Instance.new("TextButton")
+closeButton.Parent = MainFrame
+closeButton.Size = UDim2.new(0, 250, 0, 40)
+closeButton.Position = UDim2.new(0, 0, 1, -40)
+closeButton.Text = "Đóng"
+closeButton.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.Font = Enum.Font.GothamBold
+closeButton.TextSize = 20
+closeButton.BorderSizePixel = 0
+closeButton.AutoButtonColor = true
+closeButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy() -- Đóng giao diện khi nhấn
 end)
