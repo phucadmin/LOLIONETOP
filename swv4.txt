@@ -5,33 +5,42 @@ local CreatorLabel = Instance.new("TextLabel")
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
+-- Tạo nút bấm kích hoạt
 TextButton.Parent = ScreenGui
 TextButton.Size = UDim2.new(0, 200, 0, 50)
 TextButton.Position = UDim2.new(0.5, -100, 0.5, -25)
-TextButton.Text = "start"
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+TextButton.Text = "START"
+TextButton.BackgroundColor3 = Color3.fromRGB(50, 205, 50)
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.Font = Enum.Font.SourceSansBold
-TextButton.TextSize = 20
+TextButton.Font = Enum.Font.GothamBold
+TextButton.TextSize = 22
+TextButton.BorderSizePixel = 2
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.AutoButtonColor = true
 
+-- Hiển thị FPS
 FPSLabel.Parent = ScreenGui
-FPSLabel.Size = UDim2.new(0, 200, 0, 50)
+FPSLabel.Size = UDim2.new(0, 200, 0, 30)
 FPSLabel.Position = UDim2.new(0, 10, 0, 10)
 FPSLabel.Text = "FPS: Calculating..."
 FPSLabel.BackgroundTransparency = 1
 FPSLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-FPSLabel.Font = Enum.Font.SourceSansBold
+FPSLabel.Font = Enum.Font.GothamBold
 FPSLabel.TextSize = 18
+FPSLabel.TextStrokeTransparency = 0.5
 
+-- Hiển thị tên người tạo
 CreatorLabel.Parent = ScreenGui
-CreatorLabel.Size = UDim2.new(0, 200, 0, 50)
+CreatorLabel.Size = UDim2.new(0, 200, 0, 30)
 CreatorLabel.Position = UDim2.new(0, 10, 0, 40)
-CreatorLabel.Text = "Created by: phúc"
+CreatorLabel.Text = "Created by: Phúc"
 CreatorLabel.BackgroundTransparency = 1
 CreatorLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-CreatorLabel.Font = Enum.Font.SourceSansBold
+CreatorLabel.Font = Enum.Font.GothamBold
 CreatorLabel.TextSize = 18
+CreatorLabel.TextStrokeTransparency = 0.5
 
+-- Cập nhật FPS theo thời gian thực
 local function updateFPS()
     while true do
         local fps = math.floor(1 / game:GetService("RunService").RenderStepped:Wait())
@@ -40,10 +49,11 @@ local function updateFPS()
 end
 spawn(updateFPS)
 
+-- Chức năng khi bấm nút
 TextButton.MouseButton1Click:Connect(function()
-getgenv().Key = "MARU-XL62E-C7MOC-3XU1-313GR-N4D1B"
-getgenv().id = "120797DFF1585661952"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
+    getgenv().Key = "MARU-D2N1F-DCUN-WMPWZ-UCUC-8KPKX"
+    getgenv().id = "1207978541585661952"
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
     
-    TextButton:Destroy()
+    TextButton:Destroy() -- Xóa nút sau khi kích hoạt
 end)
