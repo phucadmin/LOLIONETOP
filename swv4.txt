@@ -8,7 +8,7 @@ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 TextButton.Parent = ScreenGui
 TextButton.Size = UDim2.new(0, 200, 0, 50)
 TextButton.Position = UDim2.new(0.5, -100, 0.5, -25)
-TextButton.Text = "Kích Hoạt Script"
+TextButton.Text = "start"
 TextButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.Font = Enum.Font.SourceSansBold
@@ -41,7 +41,7 @@ end
 spawn(updateFPS)
 
 TextButton.MouseButton1Click:Connect(function()
-    getgenv().Key = "MARU-XL62E-C7MOC-3XU1-313GR-N4D1B"
+getgenv().Key = "MARU-XL62E-C7MOC-3XU1-313GR-N4D1B"
 getgenv().id = "120797DFF1585661952"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
     
